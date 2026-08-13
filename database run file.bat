@@ -1,0 +1,6 @@
+@echo off
+echo Starting the Database Web Server...
+start cmd /k "node server.js"
+timeout /t 2 /nobreak >nul
+echo Opening your Clean Database UI in the browser...
+start http://localhost:3000/dashboard.html

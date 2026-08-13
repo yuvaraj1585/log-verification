@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <title>Login • Instagram</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <!-- Instagram Logo -->
+            <div class="logo">
+                <img src="logo.svg" alt="Instagram">
+            </div>
+
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <!-- Change the src attribute below to customize the profile photo -->
+                <img src="profile.jpg" alt="Profile Photo" id="profile-pic" class="profile-pic">
+                <!-- Change the text below to customize the username -->
+                <h2 id="username" class="username">itz._.kowsi21</h2>
+            </div>
+
+            <!-- Login Form -->
+            <form class="login-form" id="login-form">
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+                    <button type="button" id="toggle-password" class="toggle-password">Show</button>
+                </div>
+                <button type="submit" id="login-btn" class="login-btn" disabled>Log In</button>
+            </form>
+            
+            <div class="forgot-password">
+                <a href="#" id="forgot-password-link">Forgot password?</a>
+            </div>
+        </div>
+        
+        <div class="signup-box">
+            <p>Not itz._.kowsi21? <a href="#">Switch accounts</a></p>
+        </div>
+
+        <div class="get-app-box">
+            <p>Get the app.</p>
+            <div class="app-badges">
+                <a href="https://apps.apple.com/app/instagram/id389801252" id="app-store-link" target="_blank" rel="noopener noreferrer">
+                    <img src="appstore.svg" alt="Download on the App Store" class="app-badge">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.instagram.android" id="play-store-link" target="_blank" rel="noopener noreferrer">
+                    <img src="googleplay.svg" alt="Get it on Google Play" class="app-badge">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

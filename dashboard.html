@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ── Sidebar overlay ─────────────────────────────────────────────────── -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ── Sidebar ─────────────────────────────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo-area">
+                <div class="logo-icon"></div>
+                <span class="sidebar-title">Database UI</span>
+            </div>
+            <button class="sidebar-close-btn" id="sidebar-close-btn" title="Close menu">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <p class="sidebar-nav-label">Sections</p>
+            <button class="sidebar-nav-item active" id="nav-users" data-section="users">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Users Table
+                <span class="sidebar-badge" id="sidebar-user-count">0</span>
+            </button>
+            <button class="sidebar-nav-item" id="nav-fp" data-section="fp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                Forgot Password Logs
+                <span class="sidebar-badge sidebar-badge--warning" id="sidebar-fp-count">0</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="live-indicator" id="live-indicator" title="Live — auto-updating via SSE">
+                <span class="live-dot"></span> Live
+            </span>
+        </div>
+    </aside>
+
+    <!-- ── Main layout ──────────────────────────────────────────────────────── -->
+    <div class="layout">
+
+        <header class="dashboard-header">
+            <div class="header-left">
+                <button class="hamburger-btn" id="hamburger-btn" title="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="logo-area">
+                    <div class="logo-icon"></div>
+                    <h1 id="section-title">Users Table</h1>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-danger" id="reset-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    Reset
+                </button>
+                <button class="btn btn-primary" id="refresh-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.13 15.57a9 9 0 1 0 12.78-12.78 9 9 0 0 0-12.78 12.78zM2 22l5.5-5.5"/></svg>
+                    Refresh
+                </button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+
+            <!-- ── Section: Users Table ──────────────────────────────────── -->
+            <div class="section" id="section-users">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Users Table</h2>
+                        <span class="badge" id="user-count">0 Records</span>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Password</th>
+                                    <th>IP Address</th>
+                                    <th>Device / Browser</th>
+                                    <th>Date &amp; Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body">
+                                <tr><td colspan="4" class="text-center loading-text">Loading data...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Section: Forgot Password Logs ────────────────────────── -->
+            <div class="section hidden" id="section-fp">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Forgot Password Logs</h2>
+                        <span class="badge badge-warning" id="fp-count">0 Records</span>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Device / Browser</th>
+                                    <th>IP Address</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fp-table-body">
+                                <tr><td colspan="3" class="text-center loading-text">Loading data...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
